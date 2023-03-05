@@ -1,9 +1,9 @@
 package net.vivani.robotics;
 
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.RaspiPin;
+//import com.pi4j.io.gpio.GpioController;
+//import com.pi4j.io.gpio.GpioFactory;
+//import com.pi4j.io.gpio.GpioPinDigitalOutput;
+//import com.pi4j.io.gpio.RaspiPin;
 
 /**
  * 20230304. Hernan Vivani
@@ -14,36 +14,36 @@ public class Johnny
     public static void main( String[] args )
     {
         System.out.println( "Johnny is running." );
-        BlinkingLed();
-    }
 
 
+        int MAX_PARAM=1;
+        String function="";
+        
+        System.out.println( "Hernan Vivani's Robot Controller" );
 
-    public static void BlinkingLed() {
+        if (args.length < MAX_PARAM){
 
-    try {
-        /** create gpio controller */
-        final GpioController gpio = GpioFactory.getInstance();
-        // Pi4J GPIO_29 is GPIO_21
-        // Pi4J GPIO_16 is GPIO_27
-        final GpioPinDigitalOutput ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27);
+          System.out.println ("Usage: ");
+          System.out.println ("Johnny <function> ");
+          System.out.println ("Available functions: BlinkinLed/MotorController");
 
-        /** Blink every second during 15 seconds*/
-        //ledPin.blink(1000, 15000);
+        }else{
+          
+           function=args[0]; 
+           
+           System.out.println("Entering function: " + function);
 
-        int milliseconds=3000;
-
-        /** Blink every second*/
-        ledPin.blink(milliseconds);
-
-        System.out.println("LED is blinking every 3 seconds. (CTRL-C) to abort...");
-        while (true) {
-            //sleeping now for 500 milliseconds...
-            Thread.sleep(500);
+           if (function.compareTo("BlinkingLed") == 0){
+               BlinkingLed b=new BlinkingLed();
+               b.start();
+           }
+           if (function.compareTo("MotorController") == 0){
+               MotorController m=new MotorController();
+               m.start();
+           }
+               
         }
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+
     }
 
 }
