@@ -1,0 +1,1 @@
+omxplayer $1
