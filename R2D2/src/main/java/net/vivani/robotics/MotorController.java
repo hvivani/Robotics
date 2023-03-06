@@ -24,9 +24,13 @@ public class MotorController {
         private static int slowestLeft = 420;
         private static int fastestLeft = 700;
 
+        //Status LED
+        StatusLed statusLed;
+
 
     public MotorController() {
-    
+        statusLed=new StatusLed();
+        statusLed.standBy(); 
     }
     
 
@@ -55,7 +59,7 @@ public class MotorController {
 
             System.out.println("Keeping the program running until user aborts (CTRL-C)");
             while (true) {
-              keyPressed(forwardRight, backwardRight, speedPinLeft);
+              keyPressed();
             }
         }
         catch (Exception e) {
@@ -63,58 +67,26 @@ public class MotorController {
         }
     }
 
-    public static void keyPressed(GpioPinDigitalOutput f, GpioPinDigitalOutput b, GpioPinPwmOutput p) {
+    public static void keyPressed() {
     
         int x;
         try {
             x = System.in.read();
             switch(x) {
               case 102: //moving forward
-                forwardRight.high();
-                backwardRight.low();
-                forwardLeft.high();
-                backwardLeft.low();
-                System.out.println("--> Setting Speed to " + slowestRight);
-                speedPinLeft.setPwm(slowestRight);
-                speedPinRight.setPwm(slowestLeft);
-                System.out.println("Moving Forward"); 
+                forward(); 
                 break;
               case 98: //moving backwards
-                forwardRight.low();
-                backwardRight.high();
-                forwardLeft.low();
-                backwardLeft.high();
-                System.out.println("--> Setting Speed to " + slowestRight);
-                speedPinLeft.setPwm(slowestLeft);
-                speedPinRight.setPwm(slowestRight);
-                System.out.println("--> Moving Backward"); 
+                backward();
                 break;
               case 114: //moving right
-                forwardRight.high();
-                backwardRight.low();
-              //  forward2.low();
-              //  backward2.high();
-                System.out.println("--> Setting Speed to " + slowestRight);
-                speedPinLeft.setPwm(slowestRight);
-              //  speedPin2.setPwm(slowestLeft);
-                System.out.println("Turning Right"); 
+                right();
                 break;
               case 108: //moving left 
-              //  forward1.low();
-              //  backward1.high();
-                forwardLeft.high();
-                backwardLeft.low();
-                System.out.println("--> Setting Speed to " + slowestRight);
-              //  speedPin1.setPwm(slowestRight);
-                speedPinRight.setPwm(slowestLeft);
-                System.out.println("Turning Left"); 
+                left();
                 break;
               case 115: //stopping 
-                backwardRight.low();
-                forwardRight.low();
-                backwardLeft.low();
-                forwardLeft.low();
-                System.out.println("--> Stop."); 
+                stop(); 
                 break;
               default:
                 if (x!=10)
@@ -123,6 +95,52 @@ public class MotorController {
         } catch (Exception e) {
             System.out.println("You haven't entered a number!!!");
         }
+    }
+
+    private static void stop(){
+        backwardRight.low();
+        forwardRight.low();
+        backwardLeft.low();
+        forwardLeft.low();
+        System.out.println("--> Stop.");
+    }
+
+    private static void forward(){
+        forwardRight.high();
+        backwardRight.low();
+        forwardLeft.high();
+        backwardLeft.low();
+        System.out.println("--> Setting Speed to " + slowestRight);
+        speedPinLeft.setPwm(slowestRight);
+        speedPinRight.setPwm(slowestLeft);
+        System.out.println("Moving Forward");
+    } 
+
+    private static void backward(){
+        forwardRight.low();
+        backwardRight.high();
+        forwardLeft.low();
+        backwardLeft.high();
+        System.out.println("--> Setting Speed to " + slowestRight);
+        speedPinLeft.setPwm(slowestLeft);
+        speedPinRight.setPwm(slowestRight);
+        System.out.println("--> Moving Backward");
+    }
+
+    private static void right(){
+        forwardRight.high();
+        backwardRight.low();
+        System.out.println("--> Setting Speed to " + slowestRight);
+        speedPinLeft.setPwm(slowestRight);
+        System.out.println("Turning Right");
+    }
+  
+    private static void left(){
+        forwardLeft.high();
+        backwardLeft.low();
+        System.out.println("--> Setting Speed to " + slowestRight);
+        speedPinRight.setPwm(slowestLeft);
+        System.out.println("Turning Left");
     }
 
 }

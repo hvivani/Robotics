@@ -32,8 +32,8 @@ public class R2D2
            System.out.println("Entering function: " + function);
 
            if (function.compareTo("BlinkingLed") == 0){
-               BlinkingLed b=new BlinkingLed();
-               b.start();
+               StatusLed s=new StatusLed();
+               s.standBy();
            }
            if (function.compareTo("MotorController") == 0){
                MotorController m=new MotorController();
