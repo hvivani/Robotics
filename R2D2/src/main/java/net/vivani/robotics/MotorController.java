@@ -54,9 +54,9 @@ public class MotorController {
             speedPin2 = gpio.provisionPwmOutputPin(RaspiPin.GPIO_23, "SPEED", 0); //Pi4J GPIO_23 is GPIO_13 //ENA
 
             System.out.println("Keeping the program running until user aborts (CTRL-C)");
-            //while (true) {
-            //  keyPressed(forward1, backward1, speedPin1);
-            //}
+            while (true) {
+              keyPressed(forward1, backward1, speedPin1);
+            }
         }
         catch (Exception e) {
             e.printStackTrace();

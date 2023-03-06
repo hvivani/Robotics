@@ -1,16 +1,13 @@
 package net.vivani.robotics;
 
-//import com.pi4j.io.gpio.GpioController;
-//import com.pi4j.io.gpio.GpioFactory;
-//import com.pi4j.io.gpio.GpioPinDigitalOutput;
-//import com.pi4j.io.gpio.RaspiPin;
-
 /**
  * 20230304. Hernan Vivani
  * Jhonny - Robotics Handler
  */
 public class R2D2
 {
+
+
     public static void main( String[] args )
     {
         System.out.println( "R2D2 is running." );
