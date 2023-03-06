@@ -13,11 +13,11 @@ mvn clean && mvn package
 
 Blinking Led Function:
 ```
-java -cp ./target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 BlinkingLed
+sudo java -cp ./target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 BlinkingLed
 ```
 Motor Controller Function:
 ```
-java -cp ./target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 MotorController
+sudo java -cp ./target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 MotorController
 ```
 
 ## Legacy

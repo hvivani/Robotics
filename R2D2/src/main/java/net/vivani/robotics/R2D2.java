@@ -2,7 +2,8 @@ package net.vivani.robotics;
 
 /**
  * 20230304. Hernan Vivani
- * Jhonny - Robotics Handler
+ * R2D2 - Robotics Controller
+ * https://vivani.net/2020/04/27/raspberry-pi-java-r2d2-robot-part-1/
  */
 public class R2D2
 {
