@@ -23,9 +23,6 @@ public class StatusLed
             // Pi4J GPIO_16 is GPIO_27
             ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27);
 
-            /** Blink every second during 15 seconds*/
-            //ledPin.blink(1000, 15000);
-
             int milliseconds=3000;
 
             /** Blink every second*/
@@ -33,11 +30,11 @@ public class StatusLed
 
             System.out.println("CTRL-C to stop");
 
-            //System.out.println("LED is blinking every 3 seconds. (CTRL-C) to abort...");
-            //while (true) {
-            //    //sleeping now for 500 milliseconds...
-            //    Thread.sleep(500);
-            //}
+           // System.out.println("LED is blinking every 3 seconds. (CTRL-C) to abort...");
+           // while (true) {
+           //     //sleeping now for 500 milliseconds...
+           //     Thread.sleep(500);
+           // }
             } catch (Exception e) {
               e.printStackTrace();
             }
@@ -49,8 +46,22 @@ public class StatusLed
     }
 
     public void running() {
-        int milliseconds=500;
-        ledPin.blink(milliseconds);
+        try {
+            /** create gpio controller */
+            gpio = GpioFactory.getInstance();
+            // Pi4J GPIO_29 is GPIO_21
+            // Pi4J GPIO_16 is GPIO_27
+            ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_27);
+
+            int milliseconds=500;
+
+            /** Blink every second*/
+            ledPin.blink(milliseconds);
+
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+
     }
 
 

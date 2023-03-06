@@ -30,7 +30,8 @@ public class MotorController {
 
     public MotorController() {
         statusLed=new StatusLed();
-        statusLed.standBy(); 
+        statusLed.stop();
+        statusLed.running(); 
     }
     
 
