@@ -1,0 +1,27 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+# Starting RD2D StatusLed
+/usr/bin/java -cp /home/hvivani/Robotics/R2D2/target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 StatusLed&
+
+# Starting Video Camera VLC Streaming
+#/usr/bin/raspivid -o - -t 0 -w 640 -h 480 -fps 24  | /usr/bin/cvlc -vvv stream:///dev/stdin --sout "#rtp{sdp=rtsp://:8083/}" :demux=h264
+#/home/hvivani/Robotics/R2D2/camera/start-vlc-stream.sh&
+
+exit 0
