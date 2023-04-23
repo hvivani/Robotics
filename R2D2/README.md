@@ -1,7 +1,10 @@
 # Hernan Vivani's R2D2 Robot Controller Software
 
 This project started as a Covid/Coronavirus project for the kids back in 2020. Hardware documentation is available here:
+
 [raspberry-pi-java-r2d2-robot-part-1](https://vivani.net/2020/04/27/raspberry-pi-java-r2d2-robot-part-1/)
+
+[raspberry-pi-java-r2d2-robot-part-2](https://vivani.net/2023/03/06/raspberry-pi-java-r2d2-robot-part-2/)
 
 
 ## Compiling
