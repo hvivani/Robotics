@@ -20,6 +20,13 @@ Motor Controller Function:
 sudo java -cp ./target/R2D2-1.0-SNAPSHOT.jar net.vivani.robotics.R2D2 MotorController
 ```
 
+## Start Video Camera
+```
+sudo ./camera/start-vlc-stream.sh&
+```
+then on client computer open VLC --> Open Network Stream --> rtsp://YOUR-IP:8083/
+
+
 ## Legacy
 
 lib folder is a legacy implementation. Currently all the project runs on Maven
